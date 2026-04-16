@@ -1,0 +1,14 @@
+.venv/
+__pycache__/
+*.pyc
+.pytest_cache/
+htmlcov/
+.coverage
+coverage.xml
+test_results.xml
+bandit.json
+dependencies.json
+security_dashboard.html
+frontend/node_modules/
+frontend/.nyc_output/
+frontend/coverage/
