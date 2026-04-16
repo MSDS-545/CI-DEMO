@@ -24,10 +24,8 @@ jobs:
 
       - name: Run tests + coverage (XML + HTML)
         run: |
-          pytest --junitxml=test_results.xml \
-                --cov=app --cov-report=term \
-                --cov-report=xml \
-                --cov-report=html
+          export PYTHONPATH="${GITHUB_WORKSPACE}"
+          pytest --junitxml=test_results.xml --cov=app --cov-report=xml --cov-report=html -v
 
       - name: Run Bandit (JSON)
         run: |
