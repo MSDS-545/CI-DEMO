@@ -492,3 +492,45 @@ docker run -p 8080:8080 --name jenkins -d jenkins/jenkins:lts
 ## Notes
 
 This repository is intended as a small CI/CD and DevSecOps demonstration. The security scans are useful automated checks, but they should be treated as part of a broader software assurance process rather than a complete security assessment.
+
+## 18. Classroom CI/CD Demonstration
+
+The GitHub Actions workflow now enforces two blocking CI quality gates:
+
+1. All automated tests must pass.
+2. Application coverage must be at least **85%**.
+
+The Bandit and `pip-audit` steps are intentionally **report-only** in this teaching version. Their commands use `|| true`, allowing students to compare a blocking quality gate with a non-blocking reporting step. Removing `|| true` can be used later to demonstrate a stricter DevSecOps policy.
+
+For a guided one-hour demonstration, including an intentional failing commit, recovery, artifact inspection, and CI-to-CD discussion, see:
+
+```text
+CI_CD_CLASS_DEMO.md
+```
+
+### CI vs. CD in this repository
+
+```text
+.github/workflows/ci.yml
+    Push / Pull Request / Manual Run
+              |
+              v
+    Tests + 85% Coverage Gate
+              |
+              v
+    Security Reports + Artifacts
+
+.github/workflows/pages.yaml
+         Push to main
+              |
+              v
+    Tests + 85% Coverage Gate
+              |
+              v
+       Build Dashboard
+              |
+              v
+       GitHub Pages Deploy
+```
+
+This separation is useful for teaching: `ci.yml` demonstrates **Continuous Integration**, while `pages.yaml` demonstrates how a validated change can continue into an automated **deployment** step.
