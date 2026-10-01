@@ -47,8 +47,8 @@ jobs:
       # Report-only security checks for the classroom demo.
       - name: Run security reports
         run: |
-          bandit -r app -f json -o bandit.json || true
-          pip-audit -f json -o dependencies.json || true
+          bandit -r app -f json -o bandit.json 
+          pip-audit -f json -o dependencies.json 
           python generate_dashboard.py
 
       - name: Prepare site
